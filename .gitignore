@@ -1,0 +1,19 @@
+# secrets
+.env
+*.keystore
+*.jks
+google-services.json
+
+# node
+node_modules/
+npm-debug.log*
+
+# android
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+
+# os
+.DS_Store
