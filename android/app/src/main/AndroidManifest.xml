@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Query installed apps so the launcher can list them.
+         Android 11+ requires an explicit <queries> declaration at manifest level. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <!-- DeryOS launcher. CATEGORY_HOME makes this a candidate home screen:
          the system offers it when the user presses Home or picks a launcher. -->
     <application
@@ -24,13 +33,5 @@
             </intent-filter>
         </activity>
 
-        <!-- Query installed apps so the launcher can list them.
-             Android 11+ requires an explicit <queries> declaration. -->
-        <queries>
-            <intent>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent>
-        </queries>
     </application>
 </manifest>

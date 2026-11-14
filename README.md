@@ -63,6 +63,25 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 Press Home and Android will offer DeryOS as a home screen.
 
+
+## Install the launcher on a phone
+
+Download the built APK (15 MB, Android 8.0 and newer):
+
+- https://derycode.online/apps/deryos/DeryOS-launcher-0.1.0.apk
+- https://github.com/asiimwe3/deryos/releases/latest
+
+Open it on the phone, allow installs from the browser if Android asks, then press
+Home and choose DeryOS. To go back, clear DeryOS as the default home app.
+
+Rebuild it yourself with JDK 17 and Android SDK 34:
+
+```bash
+cd android
+echo "sdk.dir=/path/to/Android/sdk" > local.properties
+gradle assembleDebug        # or ./gradlew assembleDebug with a wrapper
+```
+
 ## Layout
 
 ```
