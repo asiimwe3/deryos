@@ -1,0 +1,60 @@
+name: Build DeryOS launcher APK
+
+on:
+  push:
+    branches: [main]
+    paths: ['android/**', '.github/workflows/android.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install platform 34
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0" --licenses > /dev/null || true
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Assemble debug APK
+        working-directory: android
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Rename artifact
+        run: |
+          mkdir -p dist
+          cp android/app/build/outputs/apk/debug/app-debug.apk dist/DeryOS-launcher-0.1.0.apk
+          ls -lh dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DeryOS-launcher-apk
+          path: dist/DeryOS-launcher-0.1.0.apk
+
+      - name: Publish release with the APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk-latest
+          name: DeryOS launcher APK (latest build)
+          body: |
+            DeryOS Phase 2 launcher, debug build.
+
+            Install: allow installs from your browser, open the APK, then press Home and choose DeryOS.
+          files: dist/DeryOS-launcher-0.1.0.apk
+          make_latest: true
