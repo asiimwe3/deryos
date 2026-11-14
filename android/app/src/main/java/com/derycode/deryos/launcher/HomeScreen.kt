@@ -98,7 +98,7 @@ private fun installedEntries(context: Context): List<LauncherEntry> {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onOpenSettings: () -> Unit = {}) {
     val context = LocalContext.current
     val entries = remember { installedEntries(context) }
 
@@ -142,7 +142,14 @@ fun HomeScreen() {
             horizontalArrangement = Arrangement.spacedBy(6.dp),
             modifier = Modifier.weight(1f)
         ) {
-            items(SYSTEM_ENTRIES) { entry -> AppTile(entry = entry, icon = null) { } }
+            items(SYSTEM_ENTRIES) { entry ->
+                AppTile(entry = entry, icon = null) {
+                    if (entry.label == "Settings") onOpenSettings()
+                    else android.widget.Toast
+                        .makeText(context, entry.label + " arrives with the market", android.widget.Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
             items(entries) { entry ->
                 AppTile(entry = entry, icon = icons[entry.packageName]) {
                     entry.packageName?.let { pkg ->

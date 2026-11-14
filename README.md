@@ -68,11 +68,15 @@ Press Home and Android will offer DeryOS as a home screen.
 
 Download the built APK (15 MB, Android 8.0 and newer):
 
-- https://derycode.online/apps/deryos/DeryOS-launcher-0.1.1.apk
+- https://derycode.online/apps/deryos/DeryOS-launcher-0.1.2.apk
 - https://github.com/asiimwe3/deryos/releases/latest
 
 Open it on the phone, allow installs from the browser if Android asks, then press
 Home and choose DeryOS. To go back, clear DeryOS as the default home app.
+
+Tap the Settings tile on the home screen to change the display preset: HD+, FHD+,
+QHD+ or 4K detail. The launcher re-renders at the density you choose, which is how
+an ordinary app can change resolution without system privileges.
 
 Rebuild it yourself with JDK 17 and Android SDK 34:
 

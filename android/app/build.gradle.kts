@@ -11,8 +11,8 @@ android {
         applicationId = "com.derycode.deryos"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "0.1.1-prototype"
+        versionCode = 3
+        versionName = "0.1.2-prototype"
     }
 
     buildTypes {

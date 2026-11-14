@@ -1,5 +1,7 @@
 package com.derycode.deryos
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.derycode.deryos.launcher.HomeScreen
+import com.derycode.deryos.settings.DisplaySettings
 import com.derycode.deryos.ui.theme.DeryOSTheme
 
 /**
@@ -17,11 +20,23 @@ import com.derycode.deryos.ui.theme.DeryOSTheme
  *
  * Registered with CATEGORY_HOME, so Android treats it as a home screen
  * replacement and offers it when the user presses Home.
- *
- * Phase 2 keeps this as a normal application. Phase 5 replaces this activity
- * with the AOSP Launcher3 fork inside a custom system image.
  */
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Apply the saved display preset before any resource is resolved, so the
+     * chosen density is used for the whole interface, not just new views.
+     */
+    override fun attachBaseContext(newBase: Context) {
+        val dpi = DisplayPrefs.currentDpi(newBase)
+        if (dpi > 0) {
+            val config = Configuration(newBase.resources.configuration)
+            config.densityDpi = dpi
+            super.attachBaseContext(newBase.createConfigurationContext(config))
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +48,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun DeryOSApp() {
     var booted by remember { mutableStateOf(false) }
+    var inSettings by remember { mutableStateOf(false) }
+
     DeryOSTheme {
-        if (!booted) {
-            BootScreen(onFinished = { booted = true })
-        } else {
-            HomeScreen()
+        when {
+            !booted -> BootScreen(onFinished = { booted = true })
+            inSettings -> DisplaySettings(onBack = { inSettings = false })
+            else -> HomeScreen(onOpenSettings = { inSettings = true })
         }
     }
 }
