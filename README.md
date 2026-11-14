@@ -68,7 +68,7 @@ Press Home and Android will offer DeryOS as a home screen.
 
 Download the built APK (15 MB, Android 8.0 and newer):
 
-- https://derycode.online/apps/deryos/DeryOS-launcher-0.1.0.apk
+- https://derycode.online/apps/deryos/DeryOS-launcher-0.1.1.apk
 - https://github.com/asiimwe3/deryos/releases/latest
 
 Open it on the phone, allow installs from the browser if Android asks, then press

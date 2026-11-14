@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive foreground: electric blue disc with a silver D, safe inside the 66dp mask. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#2F6BFF" android:pathData="M54,26a28,28 0 1,1 -0.1,0z" />
+    <path android:fillColor="#F7FAFF"
+        android:pathData="M43,38h12c9.2,0 15.8,6.4 15.8,16s-6.6,16 -15.8,16h-12zM49,44v20h6c6.2,0 9.8,-3.6 9.8,-10s-3.6,-10 -9.8,-10z" />
+</vector>

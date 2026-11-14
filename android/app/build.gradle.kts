@@ -11,8 +11,8 @@ android {
         applicationId = "com.derycode.deryos"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0-prototype"
+        versionCode = 2
+        versionName = "0.1.1-prototype"
     }
 
     buildTypes {
@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.activity:activity-compose:1.9.1")
     implementation(platform("androidx.compose:compose-bom:2024.06.00"))

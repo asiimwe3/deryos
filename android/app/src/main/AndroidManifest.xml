@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Render sharply on every panel class: 1080p, 1440p and 4K phones. -->
+    <supports-screens
+        android:anyDensity="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true" />
+
     <!-- Query installed apps so the launcher can list them.
          Android 11+ requires an explicit <queries> declaration at manifest level. -->
     <queries>
@@ -14,9 +22,12 @@
          the system offers it when the user presses Home or picks a launcher. -->
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:resizeableActivity="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/Theme.DeryOS">
 
         <activity
